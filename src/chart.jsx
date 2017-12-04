@@ -62,12 +62,6 @@ export const ChartType = {
 // } = props;
 // return chartFromType(type, data, styles);
 export const Chart = () => (
-  <ORFrame
-    data={[{ department: 'art', students: 50 }, { department: 'science', students: 8 }]}
-    style={{ fill: 'blue' }}
-    rAccessor="students"
-    oAccessor="department"
-  />
 );
 
 export default Chart;

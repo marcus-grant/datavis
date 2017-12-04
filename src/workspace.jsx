@@ -44,3 +44,12 @@ export default class Workspace extends React.Component {
     );
   }
 }
+
+/*
+  <ORFrame
+    data={[{ department: 'art', students: 50 }, { department: 'science', students: 8 }]}
+    style={{ fill: 'blue' }}
+    rAccessor="students"
+    oAccessor="department"
+  />
+*/

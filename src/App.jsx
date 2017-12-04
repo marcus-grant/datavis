@@ -1,12 +1,22 @@
 import React /* , { Component } */ from 'react';
-import Workspace from './workspace';
+import { XYFrame } from 'semiotic';
+// import Workspace from './workspace';
 import './App.css';
 // import logo from './logo.svg';
 
+const xyFrame = (
+  <XYFrame
+    points={[{ price: 1.25, size: 15 }, { price: 2.25, size: 12 }, { price: 1.5, size: 14 }]}
+    pointStyle={{ fill: 'blue' }}
+    xAccessor="price"
+    yAccessor="size"
+  />
+);
 const App = () => (
   <div className="App">
-    <Workspace />
+    <xyFrame />
     {/*
+    <Workspace />
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       <h1 className="App-title">Welcome to React</h1>
