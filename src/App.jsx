@@ -44,7 +44,6 @@ import { ORFrame } from 'semiotic';
 //     x: 28.54748484158185, value: 57.09892229774912, color: '#b6a756', value2: 3, renderKey: 2, _orFR: 4.500371900548316, _orFV: 57.09892229774912, _orFX: 360, _orFRZ: -4.500371900548316, _orFRBase: 560, _orFRBottom: 560, _orFRMiddle: 562.2501859502742, negative: false,
 //   },
 // ];
-
 const data = [
   { name: 'Bob', score: 9 },
   { name: 'Tom', score: 4 },
@@ -68,17 +67,17 @@ const margin = {
 
 const App = () => (
   <div className="App">
-    <h1>Here be Monsters</h1>
     <ORFrame
       size={[300, 300]}
       margin={margin}
       data={data}
       oAccessor="name"
-      dynamicColumnWidth="score"
+      rAccessor="score"
       style={{ fill: '#00a2ce', stroke: 'white' }}
       type="bar"
-      projection="radial"
+      projection="vertical"
       oLabel
+      oPadding={32}
     />
     {/*
     <Workspace />
