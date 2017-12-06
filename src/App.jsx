@@ -1,6 +1,12 @@
 import React /* , { Component } */ from 'react';
 // import { XYFrame } from 'semiotic';
 import { ORFrame } from 'semiotic';
+import { CSVToObjectArray, testCSVString } from './csv-manager';
+import testCSVfile from './steel-data-test.csv';
+
+const testFilePath = '/home/marcus/code/web/datavis/src/steel-data-test.csv';
+
+CSVToObjectArray(testCSVString);
 // import Workspace from './workspace';
 // import './App.css';
 // import logo from './logo.svg';
@@ -65,10 +71,12 @@ const margin = {
   right: 0,
 };
 
+console.log('testCSV:\n', testCSVfile);
+
 const App = () => (
   <div className="App">
     <ORFrame
-      size={[300, 300]}
+      size={[720, 480]}
       margin={margin}
       data={data}
       oAccessor="name"
