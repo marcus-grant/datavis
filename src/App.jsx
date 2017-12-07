@@ -1,10 +1,10 @@
 import React /* , { Component } */ from 'react';
 // import { XYFrame } from 'semiotic';
-import { ORFrame } from 'semiotic';
+// import { ORFrame } from 'semiotic';
+// import DropzoneComponent from 'react-dropzone-component';
+import Dropzone from 'react-dropzone';
 import { CSVToObjectArray, testCSVString } from './csv-manager';
-import testCSVfile from './steel-data-test.csv';
-
-const testFilePath = '/home/marcus/code/web/datavis/src/steel-data-test.csv';
+// import testCSVfile from './steel-data-test.csv';
 
 CSVToObjectArray(testCSVString);
 // import Workspace from './workspace';
@@ -30,51 +30,83 @@ CSVToObjectArray(testCSVString);
 // };
 
 // const data = [
-//   {
-//     x: 48.06512095595529,
-//     value: 49.81135144345719,
-//     color: '#4d430c',
-//     value2: 1,
-//     renderKey: 0,
-//     _orFR: 3.9259866446429896,
-//     _orFV: 49.81135144345719,
-//     _orFX: 65,
-//     _orFRZ: -3.9259866446429896,
-//     _orFRBase: 560,
-//     _orFRBottom: 560,
-//     _orFRMiddle: 561.9629933223215,
-//     negative: false,
-//   }, {
-//     x: 36.20873770350591, value: 31.74285631741024, color: '#b3331d', value2: 2, renderKey: 1, _orFR: 2.5018801207679644, _orFV: 31.74285631741024, _orFX: 212.5, _orFRZ: -2.5018801207679644, _orFRBase: 560, _orFRBottom: 560, _orFRMiddle: 561.250940060384, negative: false,
-//   }, {
-//     x: 28.54748484158185, value: 57.09892229774912, color: '#b6a756', value2: 3, renderKey: 2, _orFR: 4.500371900548316, _orFV: 57.09892229774912, _orFX: 360, _orFRZ: -4.500371900548316, _orFRBase: 560, _orFRBottom: 560, _orFRMiddle: 562.2501859502742, negative: false,
-//   },
+//   { name: 'Bob', score: 9 },
+//   { name: 'Tom', score: 4 },
+//   { name: 'Becca', score: 5 },
+//   { name: 'Kate', score: 8 },
+//   { name: 'Mike', score: 2 },
+//   { name: 'Sarah', score: 7 },
 // ];
-const data = [
-  { name: 'Bob', score: 9 },
-  { name: 'Tom', score: 4 },
-  { name: 'Becca', score: 5 },
-  { name: 'Kate', score: 8 },
-  { name: 'Mike', score: 2 },
-  { name: 'Sarah', score: 7 },
-];
 
 //
 // const orderedColorLabels = ['red', 'pink', 'purple', 'blue-grey', 'blue',
 //   'light blue', 'cyan', 'green', 'light green', 'lime', 'yellow', 'amber',
 //   'orange', 'deep orange', 'brown', 'deep purple'];
 
-const margin = {
-  left: 55,
-  top: 25,
-  bottom: 50,
-  right: 0,
-};
+// const margin = {
+//   left: 55,
+//   top: 25,
+//   bottom: 50,
+//   right: 0,
+// };
 
-console.log('testCSV:\n', testCSVfile);
+class Basic extends React.Component {
+  constructor() {
+    super();
+    this.state = { files: [] };
+  }
+
+  onDrop(files) {
+    console.log('dropped files\n', files);
+    files.forEach((file) => {
+      // TODO deal with this irritating f'in linter error about globals
+      const reader = new FileReader();
+      reader.onload = () => {
+        // a variable should be altered in a parent component so sending a
+        // func here would be the appropriate to fetch new files
+        const fileString = reader.result;
+        console.log('filestring\n', fileString);
+        this.props.handleNewFile(fileString);
+      };
+      reader.onabort = () => console.log('file reading was aborted');
+      reader.onerror = () => console.log('file reading failed');
+      reader.readAsText(file);
+    });
+    this.setState({
+      files,
+    });
+  }
+
+  render() {
+    return (
+      <section>
+        <div className="dropzone">
+          <Dropzone onDrop={this.onDrop.bind(this)}>
+            <p>Try dropping some files here, or click to select files to upload.</p>
+          </Dropzone>
+        </div>
+        <aside>
+          <h2>Dropped files</h2>
+          <ul>
+            {
+              this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
+            }
+          </ul>
+        </aside>
+      </section>
+    );
+  }
+}
+
+const handleNewFile = (fileString) => {
+  console.log('handleNewFile()\n', fileString);
+};
 
 const App = () => (
   <div className="App">
+    <h1>Pie Charts</h1>
+    <Basic onRead={handleNewFile} />
+    {/*
     <ORFrame
       size={[720, 480]}
       margin={margin}
@@ -87,6 +119,7 @@ const App = () => (
       oLabel
       oPadding={32}
     />
+    */}
     {/*
     <Workspace />
     <header className="App-header">
