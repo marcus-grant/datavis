@@ -6,6 +6,25 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+## Changelog 
+
+- 2017-12-06:
+  - CSVParser now works
+- 2017-12-07: Dropzone now works
+  - FileManager can now take files from user interaction and read them
+- 2017-12-08:
+  - Testing code stuffed into App.jsx has now been moved into own files:
+    - `chart-workspace` manages the state, layout, and controls of all charts that will ever be displayed within the main view
+    - `chart` handles setting up semiotic and custom React + D3 components that will display different charts with different parameters, style and data
+    - `chart-controls` a component containing controls modifying what `chart` renders by passing to states inside `chart-workspace`
+    - `file-manager` a set of functions to process files like CSV & JSON and convert them back & forth to non-serial data-structures
+  - Basic SASS implementation
+    - Add SASS/SCSS module to Create-React-App
+    - Create a basic SASS config as default for many elements in `src/main.scss`
+    - Create `src/styles` folder that contains all partials to be imported by `src/main.scss` or the 
+    - Create a color function that computes the next color for data series
+
+
 ## Table of Contents
 
 - [Updating to New Releases](#updating-to-new-releases)
