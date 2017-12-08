@@ -1,67 +1,73 @@
 import React from 'react';
 import { ORFrame } from 'semiotic';
-// import BarGraph from './bar-graph';
+import { testCSVString, CSVToObjectArray } from './csv-parser';
 // import PropTypes from 'prop-types';
-// import { XYFrame } from 'semiotic';
 
-// import ScatterPlot from './d3/scatter-plot';
-// import LineGraph from './d3/line-graph';
-// import movieData from '../data/movies-data';
-
-export const ChartType = {
-  SEM_LINE_GRAPH: 0,
-  LINE_GRAPH: 1,
-  SCATTER: 2,
-  SEM_BAR_GRAPH: 3,
-};
-
-// This is merely a generic chart, its props determine what and how the charts
-// that are imported from other definitions get rendered
-
-// TODO: type should be an enum
-
-// TODO: Remove dummy data once rendering has been verified
-
-
-// const scatterPlot = (styles, data) => <ScatterPlot {...styles} data={data} />;
-// const lineGraph = (styles, data) => <LineGraph {...styles} data={data} />;
-// const semLineGraph = (styles, data) => <p>Semiotics!!!</p>;
-// const semBarGraph = () => (
-//   <ORFrame
-//     data={[{ department: 'art', students: 50 }, { department: 'science', students: 8 }]}
-//     style={{ fill: 'blue' }}
-//     rAccessor="students"
-//     oAccessor="department"
-//   />
-// );
-// const semLineGraph = (styles, data) => (
-//   <XYFrame
-//     title="Two Movies"
-//     size={[700, 400]}
-//   />
-// );
-
-// const chartFromType = (type, data, styles) => {
-//   if (type === ChartType.LINE_GRAPH) {
-//     return lineGraph(styles, data);
-//   } else if (type === ChartType.SCATTER) {
-//     return scatterPlot(styles, data);
-//   } else if (type === ChartType.SEM_LINE_GRAPH) {
-//     return semLineGraph(styles, data);
-//   } else if (type === ChartType.SEM_BAR_GRAPH) {
-//     return semBarGraph(styles, data);
-//   }
-//   return undefined;
+// export const ChartType = {
+//   PIE_CHART: 0,
+//   BAR_CHART: 1,
 // };
 
-// PLACE THESE IN THE EXPORT TO RESTRUCT PROPS
-// const {
-//   type,
-//   data,
-//   styles,
-// } = props;
-// return chartFromType(type, data, styles);
-export const Chart = () => (
-);
+// const DataType = {
+//   NUMERICAL: 0,
+//   CATEGORICAL: 1,
+//   RELATIONAL: 2,
+// };
+//
+
+const testData = [
+  { name: 'Rick', score: 200 },
+  { name: 'Morty', score: 20 },
+  { name: 'Morty', score: 18 },
+  { name: 'Summer', score: 22 },
+  { name: 'Beth', score: 51 },
+  { name: 'Jerry', score: 5 },
+];
+
+// TODO: Needs better name, and potentially should be replaced by more integrated solution
+// In the case of some charts like Pie/Donut...
+// If the same ordinal key is charted with data with duplicate values for that key are charted,
+// they get projected outwards as another arc ontop of the normal pie slice
+// To fix this, each ordinal entry needs to be summed together
+const reduceDataBySummingSameOrdinalEntries = (data, oKey, rKey) => {
+  console.log('normal data\n', data);
+  const reducedData = [];
+  const setOfOrdinals = new Set();
+  data.forEach((currentDataEntry) => {
+    const currentOrdinalValue = currentDataEntry[oKey];
+    const currentRangeValue = currentDataEntry[rKey];
+    if (setOfOrdinals.has(currentOrdinalValue)) {
+      reducedData[rKey] += currentRangeValue;
+    } else {
+      reducedData.push(currentDataEntry);
+      setOfOrdinals.add(currentOrdinalValue);
+    }
+    console.log('current ordinal: ', currentOrdinalValue, ', range: ', currentRangeValue);
+    console.log('current ordinal set: ', setOfOrdinals);
+  });
+  console.log('reducedData\n', reducedData);
+  return reducedData;
+};
+
+const testCSV = () => CSVToObjectArray(testCSVString);
+
+const testPropsPie = {
+  size: [800, 480],
+  oAccessor: 'name',
+  dynamicColumnWidth: 'score',
+  type: 'bar',
+  projection: 'radial',
+  style: { fill: '#00a2ce', stroke: 'white' },
+  oLabel: true,
+  // data: testData,
+  // data: reduceDataBySummingSameOrdinalEntries(testData, 'name', 'score'),
+  data: reduceDataBySummingSameOrdinalEntries(testCSV),
+};
+
+// TODO: Create a data classifier that can test if a column of data can be represented as a number
+// This will make it easier to setup controls that have the user select data and chart types
+// TODO: Props should be better organized and categorized
+// TODO: Change to props input from workspace after testing
+export const Chart = () => <ORFrame {...testPropsPie} />;
 
 export default Chart;

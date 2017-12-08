@@ -62,4 +62,5 @@ export const CSVToObjectArray = (csvString) => {
   currentRow[currentKey] = currentValue;
   data.push(currentRow);
   console.log('data\n', data);
+  return data;
 };

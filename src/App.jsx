@@ -1,12 +1,22 @@
 import React /* , { Component } */ from 'react';
-// import { XYFrame } from 'semiotic';
-// import { ORFrame } from 'semiotic';
-// import DropzoneComponent from 'react-dropzone-component';
-import Dropzone from 'react-dropzone';
-import { CSVToObjectArray, testCSVString } from './csv-manager';
+import Chart from './chart';
+// import Dropzone from 'react-dropzone';
+// import { CSVToObjectArray, testCSVString } from './csv-manager';
 // import testCSVfile from './steel-data-test.csv';
 
-CSVToObjectArray(testCSVString);
+
+const handleNewFile = (fileString) => {
+  console.log('handleNewFile()\n', fileString);
+};
+
+const App = () => (
+  <div className="App">
+    <h1>Pie Charts</h1>
+    <Chart />
+  </div>
+);
+export default App;
+
 // import Workspace from './workspace';
 // import './App.css';
 // import logo from './logo.svg';
@@ -50,86 +60,51 @@ CSVToObjectArray(testCSVString);
 //   right: 0,
 // };
 
-class Basic extends React.Component {
-  constructor() {
-    super();
-    this.state = { files: [] };
-  }
-
-  onDrop(files) {
-    console.log('dropped files\n', files);
-    files.forEach((file) => {
-      // TODO deal with this irritating f'in linter error about globals
-      const reader = new FileReader();
-      reader.onload = () => {
-        // a variable should be altered in a parent component so sending a
-        // func here would be the appropriate to fetch new files
-        const fileString = reader.result;
-        console.log('filestring\n', fileString);
-        this.props.handleNewFile(fileString);
-      };
-      reader.onabort = () => console.log('file reading was aborted');
-      reader.onerror = () => console.log('file reading failed');
-      reader.readAsText(file);
-    });
-    this.setState({
-      files,
-    });
-  }
-
-  render() {
-    return (
-      <section>
-        <div className="dropzone">
-          <Dropzone onDrop={this.onDrop.bind(this)}>
-            <p>Try dropping some files here, or click to select files to upload.</p>
-          </Dropzone>
-        </div>
-        <aside>
-          <h2>Dropped files</h2>
-          <ul>
-            {
-              this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-            }
-          </ul>
-        </aside>
-      </section>
-    );
-  }
-}
-
-const handleNewFile = (fileString) => {
-  console.log('handleNewFile()\n', fileString);
-};
-
-const App = () => (
-  <div className="App">
-    <h1>Pie Charts</h1>
-    <Basic onRead={handleNewFile} />
-    {/*
-    <ORFrame
-      size={[720, 480]}
-      margin={margin}
-      data={data}
-      oAccessor="name"
-      rAccessor="score"
-      style={{ fill: '#00a2ce', stroke: 'white' }}
-      type="bar"
-      projection="vertical"
-      oLabel
-      oPadding={32}
-    />
-    */}
-    {/*
-    <Workspace />
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h1 className="App-title">Welcome to React</h1>
-    </header>
-    <p className="App-intro">
-      To get started, edit <code>src/App.js</code> and save to reload.
-    </p>
-    */}
-  </div>
-);
-export default App;
+// class Basic extends React.Component {
+//   constructor() {
+//     super();
+//     this.state = { files: [] };
+//   }
+//
+//   onDrop(files) {
+//     console.log('dropped files\n', files);
+//     files.forEach((file) => {
+//       // TODO deal with this irritating f'in linter error about globals
+//       const reader = new FileReader();
+//       reader.onload = () => {
+//         // a variable should be altered in a parent component so sending a
+//         // func here would be the appropriate to fetch new files
+//         const fileString = reader.result;
+//         console.log('filestring\n', fileString);
+//         this.props.handleNewFile(fileString);
+//       };
+//       reader.onabort = () => console.log('file reading was aborted');
+//       reader.onerror = () => console.log('file reading failed');
+//       reader.readAsText(file);
+//     });
+//     this.setState({
+//       files,
+//     });
+//   }
+//
+//   render() {
+//     return (
+//       <section>
+//         <div className="dropzone">
+//           <Dropzone onDrop={this.onDrop.bind(this)}>
+//             <p>Try dropping some files here, or click to select files to upload.</p>
+//           </Dropzone>
+//         </div>
+//         <aside>
+//           <h2>Dropped files</h2>
+//           <ul>
+//             {
+//               this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
+//             }
+//           </ul>
+//         </aside>
+//       </section>
+//     );
+//   }
+// }
+// Inside render return...    // <Basic onRead={handleNewFile} />
