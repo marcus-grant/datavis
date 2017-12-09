@@ -1,19 +1,11 @@
 import React /* , { Component } */ from 'react';
-import Chart from './chart';
+import ChartWorkspace from './chart-workspace';
 // import Dropzone from 'react-dropzone';
 // import { CSVToObjectArray, testCSVString } from './csv-manager';
 // import testCSVfile from './steel-data-test.csv';
 
-
-const handleNewFile = (fileString) => {
-  console.log('handleNewFile()\n', fileString);
-};
-
 const App = () => (
-  <div className="App">
-    <h1>Pie Charts</h1>
-    <Chart />
-  </div>
+  <ChartWorkspace />
 );
 export default App;
 

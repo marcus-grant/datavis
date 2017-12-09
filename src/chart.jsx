@@ -15,22 +15,21 @@ import { testCSVString, CSVToObjectArray } from './csv-parser';
 // };
 //
 
-const testData = [
-  { name: 'Rick', score: 200 },
-  { name: 'Morty', score: 20 },
-  { name: 'Morty', score: 18 },
-  { name: 'Summer', score: 22 },
-  { name: 'Beth', score: 51 },
-  { name: 'Jerry', score: 5 },
-];
+// const testData = [
+//   { name: 'Rick', score: 200 },
+//   { name: 'Morty', score: 20 },
+//   { name: 'Morty', score: 18 },
+//   { name: 'Summer', score: 22 },
+//   { name: 'Beth', score: 51 },
+//   { name: 'Jerry', score: 5 },
+// ];
 
 // TODO: Needs better name, and potentially should be replaced by more integrated solution
 // In the case of some charts like Pie/Donut...
 // If the same ordinal key is charted with data with duplicate values for that key are charted,
 // they get projected outwards as another arc ontop of the normal pie slice
-// To fix this, each ordinal entry needs to be summed together
+// To fix this, each ordinal entry needs to be summed together explicitly in a new dataset
 const reduceDataBySummingSameOrdinalEntries = (data, oKey, rKey) => {
-  console.log('normal data\n', data);
   const reducedData = [];
   const setOfOrdinals = new Set();
   data.forEach((currentDataEntry) => {
@@ -42,32 +41,25 @@ const reduceDataBySummingSameOrdinalEntries = (data, oKey, rKey) => {
       reducedData.push(currentDataEntry);
       setOfOrdinals.add(currentOrdinalValue);
     }
-    console.log('current ordinal: ', currentOrdinalValue, ', range: ', currentRangeValue);
-    console.log('current ordinal set: ', setOfOrdinals);
   });
-  console.log('reducedData\n', reducedData);
   return reducedData;
 };
 
-const testCSV = () => CSVToObjectArray(testCSVString);
-
 const testPropsPie = {
   size: [800, 480],
-  oAccessor: 'name',
-  dynamicColumnWidth: 'score',
+  oAccessor: 'Grade',
+  dynamicColumnWidth: 'Volume',
   type: 'bar',
   projection: 'radial',
   style: { fill: '#00a2ce', stroke: 'white' },
   oLabel: true,
   // data: testData,
   // data: reduceDataBySummingSameOrdinalEntries(testData, 'name', 'score'),
-  data: reduceDataBySummingSameOrdinalEntries(testCSV),
+  data: reduceDataBySummingSameOrdinalEntries(CSVToObjectArray(testCSVString), 'Grade', 'Volume'),
 };
 
 // TODO: Create a data classifier that can test if a column of data can be represented as a number
 // This will make it easier to setup controls that have the user select data and chart types
 // TODO: Props should be better organized and categorized
 // TODO: Change to props input from workspace after testing
-export const Chart = () => <ORFrame {...testPropsPie} />;
-
-export default Chart;
+export default () => <ORFrame {...testPropsPie} />;

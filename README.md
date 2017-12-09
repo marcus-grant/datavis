@@ -17,6 +17,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
     - `chart-workspace` manages the state, layout, and controls of all charts that will ever be displayed within the main view
     - `chart` handles setting up semiotic and custom React + D3 components that will display different charts with different parameters, style and data
     - `chart-controls` a component containing controls modifying what `chart` renders by passing to states inside `chart-workspace`
+- 2017-12-09:
     - `file-manager` a set of functions to process files like CSV & JSON and convert them back & forth to non-serial data-structures
   - Basic SASS implementation
     - Add SASS/SCSS module to Create-React-App
