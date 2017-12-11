@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
-import { ReactSelectize, SimpleSelect } from 'react-selectize';
+// import { ReactSelectize, SimpleSelect } from 'react-selectize';
 // import Select from 'react-select';
 // import PropTypes from 'prop-types';
 // import { CSVFileToObjectArray } from './csv-parser';
@@ -67,16 +67,16 @@ const convertKeysToOptions = (keys) => {
 //     </div>
 //   );
 // };
-const selectionMenuControls = (title, options, selected, eventHandler) => {
-  const validatedOptions = convertKeysToOptions(options);
-  return (
-    <SimpleSelect placeholder={title} onValueChange={eventHandler}>
-      { validatedOptions.forEach(option => (
-        <option value={option.value}>{option.label}</option>
-      ))}
-    </SimpleSelect>
-  );
-};
+// const selectionMenuControls = (title, options, selected, eventHandler) => {
+//   const validatedOptions = convertKeysToOptions(options);
+//   return (
+//     <SimpleSelect placeholder={title} onValueChange={eventHandler}>
+//       { validatedOptions.forEach(option => (
+//         <option value={option.value}>{option.label}</option>
+//       ))}
+//     </SimpleSelect>
+//   );
+// };
 
 // const radiusControls = (plusCallback, minusCallback) =>
 //   plusMinusControls('Radius', plusCallback, minusCallback);
@@ -107,7 +107,7 @@ const fileDropzone = eventHandler => (
 
 const pieChartControls = props => (
   <div className="chart-controls">
-    { selectionMenuControls(
+    {/* { selectionMenuControls(
       'oAccessor',
       props.dataKeys,
       props.oAccessor,
@@ -118,7 +118,7 @@ const pieChartControls = props => (
       props.dataKeys,
       props.rAccessor,
       props.rAccessorSelectionHandler,
-    )}
+    )} */}
     { fileDropzone(props.onFileDrop) }
   </div>
 );
