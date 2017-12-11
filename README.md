@@ -25,6 +25,8 @@ You can find the most recent version of this guide [here](https://github.com/fac
     - Create `src/styles` folder that contains all partials to be imported by `src/main.scss` or the 
     - Create a color function that computes the next color for data series
 
+## Notes
+- There needs to be a way to have duplicate ordinal values be represented properly in Simple bar graphs, Pie Charts and Donut charts that don't show segments.
 
 ## Table of Contents
 
