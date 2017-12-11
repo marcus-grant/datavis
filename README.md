@@ -27,7 +27,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
       - `Select` failed because for some reason setting state on its `onChange` handler creates infinite loops
       - `SimpleSelect` can't compile because of something wrong with the module
       - Seriously why are selection menus so fucking complicated...
-  - 2017-12-11:
+- 2017-12-11:
   -Basic SASS implementation
     - Add SASS/SCSS module to Create-React-App
     - Create a basic SASS config as default for many elements in `src/main.scss`
