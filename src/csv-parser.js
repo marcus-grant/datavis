@@ -1,9 +1,14 @@
+// TODO: Should this be a class instead, where it's instantiated by the file?
+// TODO: Make this work more generically and check for key mismatches
+// TODO: Add sorting function as argument
+// TODO: Add validation of some kind against the keys of all array'd objects
+// TODO: Should it be assumed the first object of the array has all the keys?
+export const getKeys = objectArray => Object.keys(objectArray[0]);
 // TODO: Put in checks that the number of values/row == # of keys for every row
 // check for undefines in keys and all values
 // Also remove the test string
-export const testCSVString = 'Part,Commodity,Grade,Suppliers,Prices,Volume\n1,HDG,DX54D,Salzgitter,1180,2090\n2,HDG,DX53D,Arcelor,1189,125\n3,HDG,DX52D,TKS,881,44\n4,HDG,DX54D,TKS,945,1341\n5,HDG,DX53D,Salzgitter,808,2025\n6,HDG,DX52D,Arcelor,1281,31\n7,CR,DC03,TKS,1254,106\n8,HDG,DX52D,TKS,827,48\n9,CR,DC03,Arcelor,1232,94\n10,HDG,DX53D,TKS,1181,1744';
 // const CSVToObjectArray = (csvString, fieldDelimiter, rowDelimiter) => {
-export const CSVToObjectArray = (csvString) => {
+export const CSVStringToObjectArray = (csvString) => {
   // start by getting the field keys / column names / accessor names
   let charIdx = 0;
   const keys = [];
@@ -20,7 +25,7 @@ export const CSVToObjectArray = (csvString) => {
   } keys.push(currentKey);
 
   // Keys seem to work, create unit tests
-  console.log('keys\n', keys);
+  // console.log('keys\n', keys);
 
   // the first newline has already been parsed, skip to next char
   charIdx += 1;
@@ -59,8 +64,22 @@ export const CSVToObjectArray = (csvString) => {
     charIdx += 1;
     currentChar = getChar(charIdx);
   } // end of value parsing while-loop
-  currentRow[currentKey] = currentValue;
-  data.push(currentRow);
-  console.log('data\n', data);
+  // currentRow[currentKey] = currentValue;
+  // data.push(currentRow);
+  // console.log('data\n', data);
   return data;
+};
+
+// TODO: figure out a proper way to have the 'onread' callback go back to workspace
+// It would be nice if all of the code for managing csvs or files are in their file
+export const CSVFileToObjectArray = (onFileReadCallback, csvFile) => {
+  if (csvFile !== null || csvFile !== undefined) {
+    const reader = new window.FileReader();
+    console.log('CSVFileToObjectArray.csvFile\n', csvFile);
+    reader.onload = () => {
+      onFileReadCallback(CSVStringToObjectArray(reader.result));
+    };
+    // TODO: add abort and failed reader handlers
+    reader.readAsText(csvFile[0]);
+  }
 };
