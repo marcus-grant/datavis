@@ -1405,7 +1405,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@2.2.5, classnames@^2.2.5:
+classnames@2.2.5, classnames@^2.2.4, classnames@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -5396,7 +5396,13 @@ postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.13:
     source-map "^0.6.1"
     supports-color "^4.4.0"
 
-prelude-ls@~1.1.2:
+prelude-extension@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/prelude-extension/-/prelude-extension-0.1.0.tgz#e5330b6a513d3fc9f81fb04b826f01207ca9028c"
+  dependencies:
+    prelude-ls "^1.1.2"
+
+prelude-ls@^1.1.1, prelude-ls@^1.1.2, prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
 
@@ -5454,7 +5460,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.6.0, prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.6.0:
+prop-types@15.6.0, prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -5638,6 +5644,12 @@ react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
 
+react-input-autosize@^2.1.0:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-2.1.2.tgz#a3dc11a5517c434db25229925541309de3f7a8f5"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-scripts@1.0.17:
   version "1.0.17"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-1.0.17.tgz#c30029123b561a060227af4d7797d50a222d3fbf"
@@ -5680,6 +5692,22 @@ react-scripts@1.0.17:
     whatwg-fetch "2.0.3"
   optionalDependencies:
     fsevents "1.1.2"
+
+react-select@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-select/-/react-select-1.1.0.tgz#626a2de839fdea2ade74dd1b143a9bde34be6c82"
+  dependencies:
+    classnames "^2.2.4"
+    prop-types "^15.5.8"
+    react-input-autosize "^2.1.0"
+
+react-selectize@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-selectize/-/react-selectize-3.0.1.tgz#92efefd26ac68ba9caca971bc1cffd5851217f89"
+  dependencies:
+    prelude-extension "^0.1.0"
+    prelude-ls "^1.1.1"
+    tether "^1.1.1"
 
 react@^16.2.0:
   version "16.2.0"
@@ -6573,6 +6601,10 @@ test-exclude@^4.1.1:
     object-assign "^4.1.0"
     read-pkg-up "^1.0.1"
     require-main-filename "^1.0.1"
+
+tether@^1.1.1:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/tether/-/tether-1.4.3.tgz#fd547024c47b6e5c9b87e1880f997991a9a6ad54"
 
 text-table@0.2.0, text-table@^0.2.0, text-table@~0.2.0:
   version "0.2.0"
