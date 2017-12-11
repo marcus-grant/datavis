@@ -18,8 +18,17 @@ You can find the most recent version of this guide [here](https://github.com/fac
     - `chart` handles setting up semiotic and custom React + D3 components that will display different charts with different parameters, style and data
     - `chart-controls` a component containing controls modifying what `chart` renders by passing to states inside `chart-workspace`
 - 2017-12-09:
-    - `file-manager` a set of functions to process files like CSV & JSON and convert them back & forth to non-serial data-structures
-  - Basic SASS implementation
+    - `csv-parser` a set of functions to process CSV files & data and convert them back & forth to non-serial data-structures
+- 2017-12-10:
+    - Add `chart-controls` to manage the rendering and setting up event handlers for a `chart-workspace`'s controls
+    - `chart-workspace` has some basic structure now for mediating between `chart-controls` & `chart`
+    - `chart` now has a template for rendering `ORFrame` as a `PieChart`
+    - Attempts at adding a functioning selection menu failed
+      - `Select` failed because for some reason setting state on its `onChange` handler creates infinite loops
+      - `SimpleSelect` can't compile because of something wrong with the module
+      - Seriously why are selection menus so fucking complicated...
+  - 2017-12-11:
+  -Basic SASS implementation
     - Add SASS/SCSS module to Create-React-App
     - Create a basic SASS config as default for many elements in `src/main.scss`
     - Create `src/styles` folder that contains all partials to be imported by `src/main.scss` or the 
