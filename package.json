@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-dropzone": "^4.2.3",
     "react-scripts": "1.0.17",
+    "react-select": "^1.1.0",
+    "react-selectize": "^3.0.1",
     "semiotic": "^1.2.10"
   },
   "scripts": {
