@@ -71,7 +71,7 @@ export default class ChartWorkspace extends React.Component {
           oLabel={this.state.oLabel}
         />
         <ChartControls
-          chartType="pie"
+          chartType={this.state.chartType}
           onFileDrop={this.onFileDrop}
           dataKeys={this.state.dataKeys}
           oAccessor={this.state.oAccessor}
